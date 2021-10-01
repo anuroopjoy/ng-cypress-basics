@@ -1,0 +1,22 @@
+<form class="form-inline">
+  <label for="email">Email:</label>
+  <input
+    type="email"
+    id="email"
+    placeholder="Enter email"
+    name="email"
+    [(ngModel)]="username"
+  />
+  <label for="pwd">Password:</label>
+  <input
+    type="password"
+    id="pwd"
+    placeholder="Enter password"
+    name="pswd"
+    [(ngModel)]="password"
+  />
+  <label>
+    <input type="checkbox" name="remember" [(ngModel)]="remember" /> Remember me
+  </label>
+  <button type="submit" (click)="login()">Submit</button>
+</form>
