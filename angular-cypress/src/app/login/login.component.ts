@@ -20,15 +20,19 @@ export class LoginComponent implements OnInit {
       this.errorMessage = 'Please fill all fields';
       return;
     }
-    const result = await this.http
-      .post('login', {
-        username: this.username,
-        password: this.password,
-      })
-      .toPromise();
-    if (result) {
-      this.router.navigateByUrl('/home');
-    } else {
+    try {
+      const result = await this.http
+        .post('login', {
+          username: this.username,
+          password: this.password,
+        })
+        .toPromise();
+      if (result) {
+        this.router.navigateByUrl('/home');
+      } else {
+        this.errorMessage = 'Invalid Login';
+      }
+    } catch (er) {
       this.errorMessage = 'Login Failed';
     }
   }
