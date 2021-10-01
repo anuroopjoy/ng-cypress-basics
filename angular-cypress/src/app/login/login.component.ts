@@ -10,12 +10,16 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   username = '';
   password = '';
-  remember = false;
+  errorMessage = '';
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {}
 
   async login() {
+    if (!(!!this.username && !!this.password)) {
+      this.errorMessage = 'Please fill all fields';
+      return;
+    }
     const result = await this.http
       .post('login', {
         username: this.username,
@@ -24,6 +28,8 @@ export class LoginComponent implements OnInit {
       .toPromise();
     if (result) {
       this.router.navigateByUrl('/home');
+    } else {
+      this.errorMessage = 'Login Failed';
     }
   }
 }

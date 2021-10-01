@@ -5,6 +5,20 @@ const userMap = {
 };
 @Injectable()
 export class AppService {
+  getCities(): { name: string; image: string; alt: string }[] {
+    return [
+      {
+        name: 'Trulli',
+        image: 'pic_trulli.jpg',
+        alt: 'Italian Trulli',
+      },
+      {
+        name: 'Chania',
+        image: 'img_chania.jpg',
+        alt: 'Chania',
+      },
+    ];
+  }
   login({ username, password }): boolean {
     if (userMap[username] === password) return true;
     return false;

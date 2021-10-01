@@ -15,8 +15,7 @@
     name="pswd"
     [(ngModel)]="password"
   />
-  <label>
-    <input type="checkbox" name="remember" [(ngModel)]="remember" /> Remember me
-  </label>
   <button type="submit" (click)="login()">Submit</button>
 </form>
+
+<p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
