@@ -10,22 +10,21 @@ describe('Login', () => {
   it('Empty fields error', () => {
     cy.visit('/');
     cy.url().should('include', '/#/login');
-    cy.get('#username').should('have.value', '').as('username');
-    cy.get('#pwd').should('have.value', '').as('password');
+    cy.get('#username').should('have.value', '').as('user');
+    cy.get('#pwd').should('have.value', '').as('pwd');
     cy.contains('Submit').click();
     cy.get('.error').should('have.text', 'Please fill all fields');
-    cy.get('@username').type('admin').should('have.value', 'admin');
-    cy.get('@password').should('have.value', '');
+    cy.get('@user').type('admin').should('have.value', 'admin');
+    cy.get('@pwd').should('have.value', '');
     cy.contains('Submit').click();
     cy.get('.error').should('have.text', 'Please fill all fields');
-    cy.get('@username').clear().should('have.value', '');
-    cy.get('@password').type('admin').should('have.value', 'admin');
+    cy.get('@user').clear().should('have.value', '');
+    cy.get('@pwd').type('admin').should('have.value', 'admin');
     cy.contains('Submit').click();
     cy.get('.error').should('have.text', 'Please fill all fields');
   });
   it('Invalid user credentials', () => {
     cy.visit('/');
-    cy.url().should('include', '/#/login');
     cy.url().should('include', '/#/login');
     cy.get('#username').type('admin').should('have.value', 'admin');
     cy.get('#pwd').type('1234').should('have.value', '1234');
@@ -42,7 +41,7 @@ describe('Login', () => {
         statusCode: 500,
         body: null,
       }
-    );
+    ).as('loginstub');
     cy.visit('/');
     cy.url().should('include', '/#/login');
     cy.get('#username').type('admin').should('have.value', 'admin');
