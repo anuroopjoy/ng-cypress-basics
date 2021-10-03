@@ -43,5 +43,5 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 beforeEach(() => {
-  cy.log('before each it');
+  cy.log('before each test case');
 });
